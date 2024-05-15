@@ -27,7 +27,9 @@ function setup() {
     for (let i = 0; i < 5; i++) {
         flowers.push({
             x: random(50, width - 50), // Adjusted to ensure flowers stay within the frame
-            y: random(50, height - 50) // Adjusted to ensure flowers stay within the frame
+            y: random(50, height - 50), // Adjusted to ensure flowers stay within the frame
+            diameter: 50, // Diameter of the flower
+            drag: false
         });
     }
 }
@@ -60,6 +62,21 @@ function drawFlowers() {
             flower.y = indexY;
         }
 
+        // Check for collision with other flowers
+        for (let j = 0; j < flowers.length; j++) {
+            if (i !== j) {
+                let otherFlower = flowers[j];
+                let combinedRadius = flower.diameter / 2 + otherFlower.diameter / 2;
+                let d = dist(flower.x, flower.y, otherFlower.x, otherFlower.y);
+                if (d < combinedRadius) {
+                    // If flowers are colliding, move them apart
+                    let angle = atan2(flower.y - otherFlower.y, flower.x - otherFlower.x);
+                    flower.x = otherFlower.x + cos(angle) * combinedRadius;
+                    flower.y = otherFlower.y + sin(angle) * combinedRadius;
+                }
+            }
+        }
+
         drawFlower(flower.x, flower.y);
     }
 }
@@ -85,6 +102,9 @@ function drawKeypoints() {
         thumbY = keypointT[1];
         fill(0, 255, 0);
         ellipse(keypointF[0], keypointF[1], 10, 10);
+
+        fill(0, 0, 255);
+        ellipse(thumbX, thumbY, 10, 10); // Draw thumb point
 
         indexX = keypointF[0];
         indexY = keypointF[1];
