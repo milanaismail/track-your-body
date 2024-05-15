@@ -11,7 +11,7 @@ let stems = [];
 let allOnStem = false; // Flag to track if all flowers are on stems
 
 function preload() {
-    backgroundImage = loadImage('background.jpeg'); // Load the background image
+    backgroundImage = loadImage('background3.jpeg'); // Load the background image
 }
 
 function setup() {
