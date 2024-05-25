@@ -62,6 +62,8 @@ function draw() {
         video.stop();
         // Stop handpose network
         handpose.removeAllListeners('predict');
+        document.body.style.backgroundColor = '#C9E5FF';
+
     } else {
         // Set background to video feed otherwise
         image(video, 0, 0, width, height);
@@ -165,10 +167,10 @@ function drawKeypoints() {
         let keypointT = prediction.landmarks[4];
         thumbX = keypointT[0];
         thumbY = keypointT[1];
-        fill(0, 255, 0);
+        fill(249, 94, 170);
         ellipse(keypointF[0], keypointF[1], 10, 10);
 
-        fill(0, 0, 255);
+        fill(249, 94, 170);
         ellipse(thumbX, thumbY, 10, 10); // Draw thumb point
 
         indexX = keypointF[0];
