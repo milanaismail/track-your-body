@@ -10,3 +10,14 @@ canvas{
 border-radius: 20px;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+#Elements{
+    width: 120px;
+    height: auto;
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
